@@ -10,6 +10,7 @@ class SelfOrganizedList {
     constructor() {
         this.head = null;
         this.tail = null;
+        this.length=0;
     }
 
     insert(data) {
@@ -20,7 +21,7 @@ class SelfOrganizedList {
         if (this.head==null){
             return 0;
         }
-
+            else return this.length;
     }
 
     at(index) {
