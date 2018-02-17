@@ -17,6 +17,9 @@ class SelfOrganizedList {
     }
 
     size() {
+        if (this.head==null){
+            return 0;
+        }
 
     }
 
