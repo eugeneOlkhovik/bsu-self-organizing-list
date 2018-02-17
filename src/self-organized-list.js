@@ -36,7 +36,7 @@ class SelfOrganizedList {
 
     at(index) {
         if (index < this.length){
-            if (index == 0)
+            if (index === 0)
                 return this.head.data;
             var node = this.head.next;
             for (var i = 1; i < index; i++){
@@ -49,13 +49,18 @@ class SelfOrganizedList {
     }
 
     findNode(data) {
-
+    var node= this.head;
+    while(node !== null) {
+        if (node.data === data) return node;
+        node = node.next;
+    }
+    return null;
     }
 
     toArray() {
         var array=[];
         var node = this.head;
-        while( node != null){
+        while( node !== null){
             array.push(node.data)
             node=node.next;
         }
@@ -63,20 +68,28 @@ class SelfOrganizedList {
     }
 
     removeAt(index) {
-        if (this.length == 1) {
-            this.head = null;
-        }
-        var count = 0;
-        var cur = this.head;
-        while (count < index) {
-            count++;
-            cur = cur.next;
-        }
+        if(index === this.length-1){
+         this.tail=this.tail.prev;
+         this.tail.next=null;
+         }
+         if (this.length == 1) {
+         this.head = null;
+         }
+         if (index == 0) {
+         this.head = this.head.next;
+         this.head.prev = null;
+         }
+         var count = 0;
+         var cur = this.head;
+         while (count < index){
+         count++;
+         cur = cur.next;
+         }
 
-        cur.next.prev = cur.prev;
-        cur.prev.next = cur.next;
-        this.length--;
+         cur.next.prev = cur.prev;
+         cur.prev.next = cur.next;
 
+         this.length--;
     }
 
     moveToFront(node) {
