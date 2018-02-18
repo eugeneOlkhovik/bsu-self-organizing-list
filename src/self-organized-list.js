@@ -65,38 +65,8 @@ class SelfOrganizedList {
     }
 
     removeAt(index) {
-       /*
-         if (this.length == 1) {
-         this.head = null;
-         this.head.next= head;
-         this.head.next.prev = null;
-         }*/
-        /*if (index) {
-            var oldHead = this.head;
-            this.head = oldHead.next;
-            this.head.prev = null;
-            oldHead = null;
-        }
 
-        if(index === this.length-1){
-            var oldTail = this.tail;
-            this.tail = oldTail.prev;
-            this.tail.next = null;
-        }
 
-         var count = 0;
-         var cur = this.head;
-         while (count < index){
-         count++;
-         cur = cur.next;
-         }
-
-        cur.prev.next = cur.next;
-        cur.next.prev = cur.prev;
-        cur.next = null;
-        cur.prev = null;
-
-        this.length--;*/
     }
 
     moveToFront(node) {
