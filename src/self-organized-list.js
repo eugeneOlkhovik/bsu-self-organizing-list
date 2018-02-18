@@ -29,10 +29,7 @@ class SelfOrganizedList {
         this.length++;
     }
 
-    size() {
-        return this.length;
-
-    }
+    size() {return this.length;}
 
     at(index) {
         if (index < this.length){
@@ -50,7 +47,7 @@ class SelfOrganizedList {
 
     findNode(data) {
     var node= this.head;
-    while(node !== null) {
+    while(node) {
         if (node.data === data) return node;
         node = node.next;
     }
@@ -60,7 +57,7 @@ class SelfOrganizedList {
     toArray() {
         var array=[];
         var node = this.head;
-        while( node !== null){
+        while(node){
             array.push(node.data)
             node=node.next;
         }
@@ -68,17 +65,25 @@ class SelfOrganizedList {
     }
 
     removeAt(index) {
-        if(index === this.length-1){
-         this.tail=this.tail.prev;
-         this.tail.next=null;
-         }
+       /*
          if (this.length == 1) {
          this.head = null;
-         }
-         if (index == 0) {
-         this.head = this.head.next;
-         this.head.prev = null;
-         }
+         this.head.next= head;
+         this.head.next.prev = null;
+         }*/
+        /*if (index) {
+            var oldHead = this.head;
+            this.head = oldHead.next;
+            this.head.prev = null;
+            oldHead = null;
+        }
+
+        if(index === this.length-1){
+            var oldTail = this.tail;
+            this.tail = oldTail.prev;
+            this.tail.next = null;
+        }
+
          var count = 0;
          var cur = this.head;
          while (count < index){
@@ -86,18 +91,29 @@ class SelfOrganizedList {
          cur = cur.next;
          }
 
-         cur.next.prev = cur.prev;
-         cur.prev.next = cur.next;
+        cur.prev.next = cur.next;
+        cur.next.prev = cur.prev;
+        cur.next = null;
+        cur.prev = null;
 
-         this.length--;
+        this.length--;*/
     }
 
     moveToFront(node) {
-
+        var cur =node.data;
+        while( node != this.head){
+            node.data=node.prev.data;
+            node=node.prev;
+        }
+        this.head.data = cur;
     }
 
     reorganize(data) {
-
+        if(this.findNode(data)){
+            this.moveToFront(this.findNode(data));
+            return true;
+        } else
+            return false;
     }
 
 }
