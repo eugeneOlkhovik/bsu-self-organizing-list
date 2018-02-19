@@ -29,14 +29,16 @@ class SelfOrganizedList {
         this.length++;
     }
 
-    size() {return this.length;}
+    size() {
+        return this.length;
+    }
 
     at(index) {
-        if (index < this.length){
+        if (index < this.length) {
             if (index === 0)
                 return this.head.data;
             var node = this.head.next;
-            for (var i = 1; i < index; i++){
+            for (var i = 1; i < index; i++) {
                 node = node.next;
             }
             return node.data;
@@ -46,40 +48,60 @@ class SelfOrganizedList {
     }
 
     findNode(data) {
-    var node= this.head;
-    while(node) {
-        if (node.data === data) return node;
-        node = node.next;
-    }
-    return null;
+        var node = this.head;
+        while (node) {
+            if (node.data === data) return node;
+            node = node.next;
+        }
+        return null;
     }
 
     toArray() {
-        var array=[];
+        var array = [];
         var node = this.head;
-        while(node){
+        while (node) {
             array.push(node.data)
-            node=node.next;
+            node = node.next;
         }
         return array;
     }
 
     removeAt(index) {
 
+        var node = this.head;
+
+        for (var i = 0; i < index; i++)
+            node = node.next;
+
+        if (node.prev)
+            node.prev.next = node.next;
+
+        if (node.next)
+            node.next.prev = node.prev;
+
+        if (node == this.head)
+            this.head = node.next;
+
+        if (node == this.tail)
+            this.tail = node.prev;
+
+        node = null;
+        this.length--;
+
 
     }
 
     moveToFront(node) {
-        var cur =node.data;
-        while( node != this.head){
-            node.data=node.prev.data;
-            node=node.prev;
+        var cur = node.data;
+        while (node != this.head) {
+            node.data = node.prev.data;
+            node = node.prev;
         }
         this.head.data = cur;
     }
 
     reorganize(data) {
-        if(this.findNode(data)){
+        if (this.findNode(data)) {
             this.moveToFront(this.findNode(data));
             return true;
         } else
